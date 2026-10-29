@@ -32,7 +32,7 @@ SECRET_KEY = 'django-insecure-!dj@(+8lmjwb@qu30xvmsxjpue)&7ngnz7pmk(-e&5oo7!)597
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['truthlens-ai-1-9ueq.onrender.com']
 
 
 # Application definition
