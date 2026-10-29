@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Analysis | TruthLens AI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 24px;
+            font-family: Arial, sans-serif;
+            background: #0b1020;
+            color: #f5f7ff;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 30px auto;
+        }
+
+        .card {
+            background: #171e33;
+            border: 1px solid #303b59;
+            border-radius: 14px;
+            padding: 24px;
+            margin: 20px 0;
+        }
+
+        h1, h2 {
+            color: #c4b5fd;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 130px;
+            padding: 14px;
+            border-radius: 9px;
+            border: 1px solid #64748b;
+            background: #0b1020;
+            color: white;
+            font-size: 16px;
+            margin-top: 10px;
+            resize: vertical;
+        }
+
+        button {
+            margin-top: 12px;
+            padding: 12px 20px;
+            border: 0;
+            border-radius: 8px;
+            background: #8b5cf6;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #7c3aed;
+        }
+
+        .article {
+            border-top: 1px solid #303b59;
+            padding: 16px 0;
+        }
+
+        a {
+            color: #a5b4fc;
+        }
+
+        .error {
+            color: #fca5a5;
+        }
+
+        .note {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        .verdict {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .score {
+            font-size: 24px;
+            font-weight: bold;
+            color: #a5b4fc;
+        }
+
+        .score-bar {
+            width: 100%;
+            height: 10px;
+            background: #303b59;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 12px 0;
+        }
+
+        .score-fill {
+            height: 100%;
+            background: #8b5cf6;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 12px;
+            }
+
+            .card {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+
+    <p><a href="/">← Back to Home</a></p>
+
+    <h1>TruthLens AI — News Analysis</h1>
+
+    <p class="note">
+        Search online reports related to a news claim and compare their
+        wording. Search matches are evidence to inspect, not proof that
+        a claim is true or false.
+    </p>
+
+    <div class="card">
+
+<form method="post" action="{% url 'check_news' %}">
+    {% csrf_token %}
+
+    <label for="news">Enter a headline or news claim</label>
+
+    <textarea
+        id="news"
+        name="news"
+        maxlength="2000"
+        required
+        placeholder="Enter the news you want to check..."
+    >{{ news }}</textarea>
+
+    <button type="submit">Search and Analyze</button>
+</form>
+
+    </div>
+
+    {% if error %}
+        <div class="card error">
+            <strong>Error:</strong> {{ error }}
+        </div>
+    {% endif %}
+
+    {% if result %}
+        <div class="card">
+            <h2>Analysis Result</h2>
+
+            <p class="verdict">{{ result.verdict }}</p>
+
+            <p><strong>{{ result.confidence_label }}:</strong></p>
+
+            <p class="score">{{ result.confidence }}%</p>
+
+            <div
+                class="score-bar"
+                role="progressbar"
+                aria-label="Search match score"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="{{ result.confidence }}"
+            >
+                <div
+                    class="score-fill"
+                    style="width: {{ result.confidence }}%;"
+                ></div>
+            </div>
+
+            <h3>Explanation</h3>
+
+            <p class="note">{{ result.explanation }}</p>
+
+            <p class="note">
+                Important: This percentage measures keyword overlap with
+                the closest search result. It is NOT the probability that
+                the news is true or fake. The website searches online
+                reports but does not independently verify every claim.
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>Related Online Reports ({{ articles|length }})</h2>
+
+            {% if articles %}
+                {% for article in articles %}
+                    <div class="article">
+                        <h3>
+                            <a
+                                href="{{ article.link }}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >{{ article.title }}</a>
+                        </h3>
+
+                        <p class="note">
+                            Source: {{ article.source }}
+                            {% if article.published %}
+                                · {{ article.published }}
+                            {% endif %}
+                        </p>
+
+                        {% if article.description %}
+                            <p>{{ article.description }}</p>
+                        {% endif %}
+
+                        <a
+                            href="{{ article.link }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >Read report ↗</a>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No related reports were returned for this search.</p>
+            {% endif %}
+        </div>
+    {% endif %}
+
+</div>
+</body>
+</html>

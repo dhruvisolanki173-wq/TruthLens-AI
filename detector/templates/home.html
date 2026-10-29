@@ -1,0 +1,263 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake News Detection with AI Explanation</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #080d1b;
+            color: #f8fafc;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 8%;
+            border-bottom: 1px solid #202a40;
+        }
+
+        .logo {
+            font-size: 19px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .logo span {
+            color: #818cf8;
+        }
+
+        .badge {
+            color: #a5b4fc;
+            border: 1px solid #343e65;
+            background: #151c35;
+            padding: 8px 13px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        .hero {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 95px 24px 65px;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            color: #c4b5fd;
+            background: #191735;
+            border: 1px solid #37305d;
+            border-radius: 25px;
+            padding: 9px 15px;
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            font-size: clamp(36px, 6vw, 62px);
+            line-height: 1.13;
+            letter-spacing: -1.5px;
+            margin-bottom: 24px;
+        }
+
+        h1 span {
+            background: linear-gradient(90deg, #818cf8, #c4b5fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .description {
+            color: #a8b3c7;
+            font-size: 17px;
+            line-height: 1.8;
+            max-width: 680px;
+            margin: 0 auto 34px;
+        }
+
+        .primary-btn {
+            display: inline-block;
+            text-decoration: none;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            color: white;
+            padding: 16px 28px;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 8px 30px #6366f133;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px #6366f155;
+        }
+
+        .features {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 15px 24px 65px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: linear-gradient(145deg, #121a2d, #0d1425);
+            border: 1px solid #26314a;
+            padding: 28px;
+            border-radius: 16px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #6366f1;
+        }
+
+        .icon {
+            font-size: 27px;
+            margin-bottom: 18px;
+        }
+
+        h2 {
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: #9aa8bd;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .notice {
+            max-width: 1000px;
+            margin: 0 auto 45px;
+            padding: 0 24px;
+        }
+
+        .notice-inner {
+            background: #111827;
+            border: 1px solid #303b50;
+            border-radius: 12px;
+            padding: 18px 22px;
+            color: #aab6c9;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .notice strong {
+            color: #e2e8f0;
+        }
+
+        footer {
+            border-top: 1px solid #202a40;
+            text-align: center;
+            padding: 25px 15px;
+            color: #77859c;
+            font-size: 13px;
+        }
+
+        @media (max-width: 750px) {
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding-top: 65px;
+            }
+
+            .navbar {
+                padding: 20px 5%;
+            }
+
+            .logo {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Truth<span>Lens</span> AI</div>
+        <div class="badge">AI-Powered Project</div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="eyebrow">✦ Artificial Intelligence · NLP · News Analysis</div>
+
+            <h1>
+                Fake News Detection<br>
+                <span>with AI Explanation</span>
+            </h1>
+
+            <p class="description">
+                Explore a smarter way to analyze news claims. Our system uses
+                machine learning to examine text patterns and discover related
+                news coverage, helping you investigate information more carefully.
+            </p>
+
+            <a href="/check-news/" class="primary-btn">
+                Analyze a News Claim &nbsp; →
+            </a>
+        </section>
+
+        <section class="features">
+            <div class="feature-card">
+                <div class="icon">🔍</div>
+                <h2>AI Text Analysis</h2>
+                <p>
+                    Analyze a headline or news claim using a machine-learning
+                    model trained to identify patterns in news text.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon">🧠</div>
+                <h2>Explainable Results</h2>
+                <p>
+                    Understand the model's prediction with a clear explanation
+                    instead of receiving only a label.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon">🌐</div>
+                <h2>Related News Coverage</h2>
+                <p>
+                    Explore related articles, sources and publication dates
+                    to investigate a claim from additional perspectives.
+                </p>
+            </div>
+        </section>
+
+        <section class="notice">
+            <div class="notice-inner">
+                <strong>Important note:</strong>
+                Predictions are preliminary machine-learning estimates, not
+                verified facts. Always check reliable sources and independent
+                evidence before deciding whether a news claim is true or false.
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        Fake News Detection with AI Explanation · Academic Project
+    </footer>
+
+</body>
+</html>
